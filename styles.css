@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+:root {
+    /* purple */
+    --purple-100: hsl(254, 88%, 90%);
+    --purple-500: hsl(256, 67%, 59%);
+
+    /* yellow */
+    --yellow-100: hsl(31, 66%, 93%);
+    --yellow-500: hsl(39, 100%, 71%);
+
+    /* black */
+    --black: hsl(0, 0%, 7%);
+
+    /* font family */
+
+    --font-regular: "DM-sans", sans-serif;
+
+    /* font-sizes */
+    --p-font-size: 18px;
+
+    /* font-weight */
+    --weight-100: 100;
+    --weight-200: 200;
+    --weight-400: 400;
+    --weight-600: 600;
+
+    /* spacing variables */
+    --spacing-4: 4px;
+    --spacing-8: 8px;
+    --spacing-12: 12px;
+    --spacing-16: 16px;
+    --spacing-20: 20px;
+    --spacing-24: 24px;
+    --spacing-32: 32px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
+    --spacing-60: 60px;
+    --spacing-80: 80px;
+    --spacing-100: 100px;
+}
+
+body {
+    padding: var(--spacing-80) calc(var(--spacing-80) * 2);
+    min-height: 100vh;
+    font-family: var(--font-regular);
+}
+
+#main-cont {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 280px 140px 280px 280px;
+    grid-template-areas:
+        "area1 area2 area2 area3"
+        "area1 area4 area5 area3"
+        "area6 area4 area5 area3"
+        "area6 area7 area8 area8";
+    border: 2px solid;
+    gap: 30px;
+}
+
+.grid-item {
+    border-radius: 16px;
+    display: inline-block;
+    margin-bottom: 3px;
+    border: 2px solid;
+}
+
+/* insert item 1 code here */
+
+img {
+    width: 100%;
+}
