@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap");
 
 :root {
     /* purple */
@@ -12,68 +12,406 @@
     --purple-500: hsl(256, 67%, 59%);
 
     /* yellow */
-    --yellow-100: hsl(31, 66%, 93%);
+    --yellow-100: hsl(33, 96%, 89%);
     --yellow-500: hsl(39, 100%, 71%);
 
     /* black */
     --black: hsl(0, 0%, 7%);
 
-    /* font family */
-
-    --font-regular: "DM-sans", sans-serif;
-
     /* font-sizes */
     --p-font-size: 18px;
 
     /* font-weight */
-    --weight-100: 100;
-    --weight-200: 200;
-    --weight-400: 400;
-    --weight-600: 600;
+    --extra-light: 200;
+    --regular: 400;
+    --medium: 450;
 
-    /* spacing variables */
+    /* size variables */
     --spacing-4: 4px;
     --spacing-8: 8px;
     --spacing-12: 12px;
     --spacing-16: 16px;
     --spacing-20: 20px;
     --spacing-24: 24px;
+    --spacing-28: 28px;
     --spacing-32: 32px;
+    --spacing-36: 36px;
     --spacing-40: 40px;
+    --spacing-44: 44px;
     --spacing-48: 48px;
+    --spacing-52: 52px;
     --spacing-60: 60px;
     --spacing-80: 80px;
     --spacing-100: 100px;
+    --spacing-120: 120px;
+    --spacing-160: 160px;
+    --spacing-200: 200px;
+
+    /* font sizes: */
+    /* ?multiply each size by 4 to get the size in pixels and divide by 4 to get the size in rem */
+    --font-size-1: 0.25rem; /* 4px */
+    --font-size-2: 0.5rem; /* 8px */
+    --font-size-3: 0.75rem; /* 12px */
+    --font-size-4: 1rem; /* 16px */
+    --font-size-5: 1.25rem; /* 20px */
+    --font-size-6: 1.5rem; /* 24px */
+    --font-size-7: 1.75rem; /* 28px */
+    --font-size-8: 2rem; /* 32px */
+    --font-size-9: 2.25rem; /* 36px */
+    --font-size-10: 2.5rem; /* 40px */
+    --font-size-11: 2.75rem; /* 44px */
+    --font-size-12: 3rem; /* 48px */
+    --font-size-13: 3.25rem; /* 52px */
+    --font-size-14: 3.5rem; /* 56px */
+    --font-size-15: 3.75rem; /* 60px */
+    --font-size-16: 4rem; /* 64px */
+    --font-size-17: 4.25rem; /* 68px */
+    --font-size-18: 4.5rem; /* 72px */
+    --font-size-19: 4.75rem; /* 76px */
+    --font-size-20: 5rem; /* 80px */
+    --font-size-21: 5.25rem; /* 84px */
+    --font-size-22: 5.5rem; /* 88px */
+    --font-size-23: 5.75rem; /* 92px */
+    --font-size-24: 6rem; /* 96px */
+    --font-size-25: 6.25rem; /* 100px */
+}
+
+/* dm-sans-latin-wght-normal */
+@font-face {
+    font-family: "DM Sans Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 1000;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/dm-sans:vf@latest/latin-wght-normal.woff2)
+        format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 body {
-    padding: var(--spacing-80) calc(var(--spacing-80) * 2);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    padding: clamp(1.25rem, 4.018vw + -1.241rem, 2.375rem)
+        clamp(5.125rem, 16.741vw + -5.254rem, 9.813rem); /*top, bottom | left, right*/
     min-height: 100vh;
-    font-family: var(--font-regular);
+    font-family: "DM Sans Variable";
+    line-height: 1;
+    letter-spacing: -2px;
+    background-color: #e7e7e7;
 }
 
 #main-cont {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 280px 140px 280px 280px;
+    /*? the subtraction is to give space for the gap so that the container isn't overflowed */
+    grid-template-rows: calc(40.5% - 24px) calc(10% - 24px) calc(21.5% - 24px) 30%; /* row1 row2 row3 row4*/
     grid-template-areas:
         "area1 area2 area2 area3"
         "area1 area4 area5 area3"
         "area6 area4 area5 area3"
         "area6 area7 area8 area8";
-    border: 2px solid;
-    gap: 30px;
+    gap: var(--spacing-24);
+    min-width: 920px;
+    max-width: 1200px;
+    max-height: 900px;
 }
+
+/* *global styles */
 
 .grid-item {
-    border-radius: 16px;
-    display: inline-block;
-    margin-bottom: 3px;
-    border: 2px solid;
+    display: grid;
+    place-content: center;
+    border-radius: var(--spacing-16);
 }
 
-/* insert item 1 code here */
+/* *components styles */
 
-img {
+h2 {
+    font-weight: var(--medium);
+}
+
+p {
+    font-size: clamp(1rem, 0.446vw + 0.723rem, 1.125rem);
+}
+
+:not(.item3) {
+    object-fit: contain; /*preserves the aspect ratio and size of an image and resizes it to fit it's container*/
+}
+
+.item1,
+.item4,
+.item5,
+.item6,
+.item7 {
+    padding: 9%;
+}
+
+/*? overriding the "center" value set for all elements with class "grid-item"*/
+.item6,
+.item7 {
+    align-content: space-between;
+    object-position: left bottom;
+}
+
+.item6 > img,
+.item7 > img {
+    object-position: left bottom;
     width: 100%;
+}
+
+/* !item 1 */
+
+.item1 {
+    grid-area: area1;
+    background-color: var(--yellow-100);
+}
+
+.item1 > h2 {
+    font-size: clamp(2rem, 1.786vw + 0.893rem, 2.5rem);
+}
+
+.item1 > h2 > i {
+    color: var(--purple-500);
+}
+
+.item1 > img {
+    width: 100%;
+    max-width: 300px;
+    height: 100px;
+    object-position: center top;
+    margin-top: var(--spacing-20);
+}
+
+/* !item 2 */
+
+.item2 {
+    grid-area: area2;
+    background-color: var(--purple-500);
+    color: white;
+    padding: var(--spacing-20);
+    text-align: center;
+}
+
+.item2 > h2 {
+    font-size: clamp(2.75rem, 4.464vw + -0.018rem, 4rem);
+}
+
+.item2 > h2 > span {
+    color: var(--yellow-500);
+}
+
+.item2 > img {
+    margin: var(--spacing-20) auto 0; /*auto centers the image*/
+    min-width: 200px;
+    width: 40%;
+}
+
+.item2 > p {
+    margin-top: 4px;
+    font-weight: var(--extra-light);
+    letter-spacing: 0;
+}
+
+/* !item3 */
+
+.item3 {
+    grid-area: area3;
+    /*? overriding the .grid-item class which centers horizontally and vertically*/
+    place-content: start;
+    background-color: var(--purple-100);
+    padding: 16% 10%;
+    overflow: hidden;
+}
+
+.item3 > h2 {
+    font-size: var(--font-size-8);
+    margin-top: 12px;
+}
+
+.item3 {
+    width: 100%;
+    overflow: hidden;
+}
+
+.item3 > img {
+    margin-top: var(--spacing-32);
+    min-width: 220px;
+    width: 110%;
+    scale: 1.55;
+    transform-origin: left top;
+    height: auto; /*so the height scales everything*/
+}
+
+.item3 > p {
+    font-size: clamp(1rem, 0.893vw + 0.446rem, 1.25rem);
+    letter-spacing: 0;
+    padding-right: 20%;
+    margin-top: 60%;
+}
+
+/* to remove the right padding as it's too much when the viewport is >=1380px  */
+@media (min-width: 1380px) {
+    .item3 > p {
+        padding-right: 0;
+    }
+}
+
+/* !item 4 */
+
+.item4 {
+    grid-area: area4;
+    overflow: hidden;
+    background-color: white;
+}
+
+.item4 > img {
+    width: 100%;
+    transform-origin: left top;
+    scale: 1.5;
+    height: var(--spacing-60);
+}
+
+.item4 > h2 {
+    margin-top: var(--spacing-32);
+    font-size: clamp(1.625rem, 1.339vw + 0.795rem, 2rem);
+}
+
+/*! item 5 */
+
+.item5 {
+    background-color: var(--yellow-500);
+    align-content: start; /*? overriding the "center" value set for all elements with class "grid-item"*/
+    overflow: hidden;
+    grid-area: area5;
+}
+
+.item5 > h2 {
+    margin-top: var(--spacing-8);
+    font-size: var(--font-size-8);
+}
+
+.item5 > img {
+    width: 100%;
+    height: 212px;
+    object-position: left top;
+    translate: 0 20px;
+}
+
+/* !item 6 */
+
+.item6 {
+    background-color: var(--yellow-500);
+    grid-area: area6;
+}
+
+.item6 > h2 {
+    font-size: clamp(2.25rem, 0.893vw + 1.696rem, 2.5rem);
+}
+
+.item6 > img {
+    height: 220px;
+}
+
+/* ?between 991 and 1200px, "align-content: space-between" has too much space between elements. Therefore it's been changed to center */
+@media (max-width: 1200px) {
+    .item6 {
+        align-content: center;
+    }
+}
+
+/* !item 7 */
+
+.item7 {
+    background-color: white;
+    grid-area: area7;
+}
+
+.item7 > p {
+    font-size: clamp(3.25rem, 2.679vw + 1.589rem, 4rem);
+}
+
+.item7 > img {
+    height: 100px;
+}
+
+/* !item 8 */
+
+.item8 {
+    display: flex;
+    padding: 5%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--purple-500);
+    grid-area: area8;
+}
+
+.item8 > img {
+    width: 120%;
+    height: 100%;
+    object-position: left center;
+}
+
+.item8 > h2 {
+    color: white;
+    font-size: clamp(2rem, 1.786vw + 0.893rem, 2.5rem);
+    margin-left: 12px;
+}
+
+.attribution {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    body {
+        padding: 4vh 2vh;
+        justify-content: unset;
+        align-items: unset;
+    }
+
+    #main-cont {
+        display: grid;
+        grid-template-columns: unset;
+        grid-template-areas: none;
+        grid-template-rows: unset;
+        height: 100%;
+        border: 2px solid;
+    }
+
+    .grid-item {
+        grid-area: unset;
+    }
+
+    .item1 {
+        order: 7;
+    }
+
+    .item2 {
+        order: 1;
+    }
+
+    .item3 {
+        order: 4;
+    }
+
+    .item4 {
+        order: 2;
+    }
+
+    .item5 {
+        order: 3;
+    }
+
+    .item6 {
+        order: 8;
+    }
+
+    .item7 {
+        order: 6;
+    }
+
+    .item8 {
+        order: 5;
+    }
 }
