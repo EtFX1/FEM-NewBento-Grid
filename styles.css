@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    /* ?min-height so that the height doesn't stop at the content, rather stops at the height of the viewport (can also use 100%)*/
+    min-height: 100vh;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap");
 
 :root {
@@ -26,7 +32,7 @@
     --regular: 400;
     --medium: 450;
 
-    /* size variables */
+    /* size and spacing variables */
     --spacing-4: 4px;
     --spacing-8: 8px;
     --spacing-12: 12px;
@@ -91,267 +97,270 @@
 
 body {
     display: grid;
-    place-content: center;
-    padding: clamp(1.25rem, 4.018vw + -1.241rem, 2.375rem)
-        clamp(5.125rem, 16.741vw + -5.254rem, 9.813rem); /*top, bottom | left, right*/
-    min-height: 100vh;
+    padding: 0 10%;
+    place-items: center;
     font-family: "DM Sans Variable";
-    line-height: 1;
-    letter-spacing: -2px;
+    line-height: 1.05;
     background-color: #e7e7e7;
 }
 
+/* making the body's padding smaller at 1200px because it's too big */
+@media (max-width: 1200px) {
+    body {
+        padding: 16px 48px;
+    }
+}
+
 #main-cont {
-    border: 2px solid;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+
     /*? the subtraction is to give space for the gap so that the container isn't overflowed */
     grid-template-rows: calc(40% - 28px) calc(10% - 28px) calc(20% - 28px) 30%; /* row1 row2 row3 row4*/
+
     grid-template-areas:
         "area1 area2 area2 area3"
         "area1 area4 area5 area3"
         "area6 area4 area5 area3"
         "area6 area7 area8 area8";
     gap: var(--spacing-28);
-    width: clamp(920px, 100%, 1200px);
-    max-height: 900px;
+    width: min(100%, 1150px);
+
+    /*?restricting the height to a 100% of the body (parent elem). Else the content will cause this cont to overflow */
+
+    /* 920px because the content inside has been designed for 920px */
+    height: min(100%, 920px);
 }
 
-/* *global styles */
+/* !global styles */
 
 .grid-item {
     display: grid;
-    place-content: center;
-    border-radius: var(--spacing-16);
+    border-radius: 16px;
+
+    /* using this to align the content vertically in the middle of their individual cells */
+    align-items: center;
 }
 
 /* *components styles */
 
-h2 {
+h2:not(.faster-audience-growth > h2) {
     font-weight: var(--medium);
+    letter-spacing: -2px;
 }
 
 p {
     font-size: clamp(1rem, 0.446vw + 0.723rem, 1.125rem);
 }
 
-:not(.item3) {
+img {
     object-fit: contain; /*preserves the aspect ratio and size of an image and resizes it to fit it's container*/
+    height: auto;
 }
 
-.item1,
-.item4,
-.item5,
-.item6,
-.item7 {
-    padding: 9%;
+.create-post,
+.social-media-faster,
+.write-using-ai {
+    padding: 10%;
 }
 
-/*? overriding the "center" value set for all elements with class "grid-item"*/
-.item6,
-.item7 {
-    align-content: space-between;
+.manage-multiple-accounts,
+.maintain-consistent-schedule,
+.faster-audience-growth {
+    padding: 8%;
 }
 
-.item6 > img,
-.item7 > img {
-    object-position: left bottom;
-    width: 100%;
-}
+/*!  desktop - grid-area: 1 | mobile - grid-order: 7  */
 
-/* !item 1 */
-
-.item1 {
+.create-post {
     grid-area: area1;
+
+    /* using this to align all the cells in the middle of the container vertically, not just the content in their individual cells */
+    align-content: center;
     background-color: var(--yellow-100);
 }
-
-.item1 > h2 {
+.create-post > h2 {
     font-size: clamp(2rem, 1.786vw + 0.893rem, 2.5rem);
 }
 
-.item1 > h2 > i {
+.create-post > h2 > i {
     color: var(--purple-500);
 }
 
-.item1 > img {
-    width: 100%;
-    max-width: 300px;
-    height: 100px;
+.create-post > img {
+    width: min(100%, 300px);
     object-position: center top;
     margin-top: var(--spacing-20);
 }
 
-/* !item 2 */
+/*!  desktop - grid-area: 2 | mobile - grid-order: 1  */
 
-.item2 {
+.social-media-faster {
+    text-align: center;
     grid-area: area2;
     background-color: var(--purple-500);
     color: white;
-    padding: var(--spacing-20);
-    text-align: center;
 }
 
-.item2 > h2 {
-    font-size: clamp(2.75rem, 4.464vw + -0.018rem, 4rem);
+.social-media-faster > h2 {
+    /*  vw >= 992px <= 1440 */
+    font-size: clamp(2.75rem, 2.679vw + 1.089rem, 3.5rem);
 }
 
-.item2 > h2 > span {
+.social-media-faster > h2 > span {
     color: var(--yellow-500);
 }
 
-.item2 > img {
-    margin: var(--spacing-20) auto 0; /*auto centers the image*/
-    min-width: 200px;
-    width: 40%;
+.social-media-faster > img {
+    justify-self: center;
+    width: min(78.4%, var(--spacing-200));
+    margin-top: var(--spacing-12);
 }
 
-.item2 > p {
-    margin-top: 4px;
+.social-media-faster > p {
+    font-size: clamp(1rem, 0.357vw + 0.929rem, 1.25rem);
+    margin-top: var(--spacing-8);
     font-weight: var(--extra-light);
-    letter-spacing: 0;
 }
 
-/* !item3 */
+/*!  desktop - grid-area: 3 | mobile - grid-order: 4 */
 
-.item3 {
+.schedule-to-social-media {
     grid-area: area3;
-    /*? overriding the .grid-item class which centers horizontally and vertically*/
-    place-content: start;
     background-color: var(--purple-100);
     padding: 16% 10%;
     overflow: hidden;
 }
 
-.item3 > h2 {
-    font-size: var(--font-size-8);
-    margin-top: 12px;
+.schedule-to-social-media > h2 {
+    font-size: clamp(1.75rem, 0.893vw + 1.196rem, 2rem);
 }
 
-.item3 {
-    width: 100%;
-    overflow: hidden;
+.schedule-to-social-media > img {
+    margin-top: 16px;
+    width: 180%;
 }
 
-.item3 > img {
-    margin-top: var(--spacing-32);
-    min-width: 220px;
-    width: 110%;
-    scale: 1.55;
-    transform-origin: left top;
-    height: auto; /*so the height scales everything*/
-}
-
-.item3 > p {
-    font-size: clamp(1rem, 0.893vw + 0.446rem, 1.25rem);
-    letter-spacing: 0;
-    padding-right: 20%;
-    margin-top: 60%;
-}
-
-/* to remove the right padding as it's too much when the viewport is >=1380px  */
-@media (min-width: 1380px) {
-    .item3 > p {
-        padding-right: 0;
+@media (max-width: 1300px) {
+    .schedule-to-social-media > img {
+        margin-top: 0;
     }
 }
 
-/* !item 4 */
+.schedule-to-social-media > p {
+    /* increasing the font size between 992px and 1440px */
+    font-size: clamp(0.938rem, 1.116vw + 0.246rem, 1.25rem);
+    /* ?using translate because the usual "margin-top" will push the image above this p elem, upwards  */
+    translate: 0 20%;
+}
 
-.item4 {
+@media (max-width: 1100px) {
+    .schedule-to-social-media > img {
+        translate: 0 -8%;
+    }
+
+    .schedule-to-social-media > p {
+        /* ?using translate because the usual "margin-top" will push the image above this p elem, upwards  */
+        translate: 0 -60%;
+    }
+}
+
+/*!  desktop - grid-area: 4 | mobile - grid-order: 2  */
+
+.manage-multiple-accounts {
+    padding-left: 11%;
     grid-area: area4;
     overflow: hidden;
     background-color: white;
 }
 
-.item4 > img {
+.manage-multiple-accounts > img {
+    margin-top: -12px;
     width: 100%;
+    height: var(--spacing-60);
     transform-origin: left top;
     scale: 1.5;
-    height: var(--spacing-60);
 }
 
-.item4 > h2 {
+.manage-multiple-accounts > h2 {
     margin-top: var(--spacing-32);
-    font-size: clamp(1.625rem, 1.339vw + 0.795rem, 2rem);
+
+    /* <= 992px vw <= 1440px */
+    font-size: clamp(1.75rem, 0.891vw + 1.198rem, 2rem);
 }
 
-/*! item 5 */
+/*!  desktop - grid-area: 5 | mobile - grid-order: 3  */
 
-.item5 {
+.maintain-consistent-schedule {
     background-color: var(--yellow-500);
-    align-content: start; /*? overriding the "center" value set for all elements with class "grid-item"*/
     overflow: hidden;
     grid-area: area5;
 }
 
-.item5 > h2 {
-    margin-top: var(--spacing-8);
-    font-size: var(--font-size-8);
+.maintain-consistent-schedule > h2 {
+    margin-top: -4px;
+    font-size: clamp(1.625rem, 0.536vw + 1.518rem, 2rem);
 }
 
-.item5 > img {
+.maintain-consistent-schedule > img {
     width: 100%;
-    height: 212px;
-    object-position: left top;
-    translate: 0 20px;
+    translate: 0 8px;
 }
 
-/* !item 6 */
+/*!  desktop - grid-area: 6 | mobile - grid-order: 8  */
 
-.item6 {
+.write-using-ai {
     background-color: var(--yellow-500);
     grid-area: area6;
 }
 
-.item6 > h2 {
+.write-using-ai > h2 {
     font-size: clamp(2.25rem, 0.893vw + 1.696rem, 2.5rem);
 }
 
-.item6 > img {
-    height: 220px;
+.write-using-ai > img {
+    align-self: end;
+    object-position: left bottom;
+    width: 100%;
 }
 
-/* ?between 991 and 1200px, "align-content: space-between" has too much space between elements. Therefore it's been changed to center */
-@media (max-width: 1200px) {
-    .item6 {
-        align-content: center;
-    }
-}
+/*!  desktop - grid-area: 7 | mobile - grid-order: 6  */
 
-/* !item 7 */
-
-.item7 {
+.faster-audience-growth {
     background-color: white;
     grid-area: area7;
 }
 
-.item7 > p {
+.faster-audience-growth > p {
+    font-weight: var(--medium);
     font-size: clamp(3.25rem, 2.679vw + 1.589rem, 4rem);
 }
 
-.item7 > img {
-    height: 100px;
+.faster-audience-growth > h2 {
+    font-size: var(--font-size-5);
+    font-weight: var(--regular);
 }
 
-/* !item 8 */
+.faster-audience-growth > img {
+    width: min(80%, 160px);
+}
 
-.item8 {
+/*!  desktop - grid-area: 8 | mobile - grid-order: 5  */
+
+.grow-followers {
     display: flex;
     padding: 5%;
-    justify-content: space-between;
-    align-items: center;
     background-color: var(--purple-500);
     grid-area: area8;
 }
 
-.item8 > img {
-    width: 120%;
+.grow-followers > img {
+    width: 100%;
     height: 100%;
     object-position: left center;
 }
 
-.item8 > h2 {
+.grow-followers > h2 {
     color: white;
     font-size: clamp(2rem, 1.786vw + 0.893rem, 2.5rem);
     margin-left: 12px;
@@ -362,58 +371,251 @@ p {
 }
 
 @media (max-width: 991px) {
+    /* @!global styles */
     body {
-        padding: 4vh 2vh;
-        place-content: start;
+        padding: var(--spacing-20);
     }
 
     #main-cont {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(1fr);
+        /* ?auto means that the height is determined by the content */
+        grid-template-rows: repeat(8, auto);
         grid-template-areas: none;
-        border: 2px solid;
-        width: 100%;
+
+        /* overriding the min-height of 920px on desktop mode */
         height: 100%;
     }
 
-    .grid-item > img {
-        width: 100px;
-        height: 100px;
+    .schedule-to-social-media {
+        padding: min(8%, 48px) 5%;
+    }
+
+    .manage-multiple-accounts,
+    .maintain-consistent-schedule,
+    .faster-audience-growth {
+        padding: 4% 5%;
     }
 
     .grid-item {
         grid-area: unset;
     }
 
-    .item1 {
+    /* @!specific styles */
+
+    /*!  desktop - grid-area: 1 | mobile - grid-order: 7  */
+    .create-post {
         order: 7;
+        padding: min(8%, 40px);
     }
 
-    .item2 {
+    .create-post > h2 {
+        font-size: clamp(1.75rem, 3.069vw + 0.599rem, 2.5rem);
+    }
+
+    .create-post > img {
+        width: min(60%, 240px);
+        margin-top: var(--spacing-28);
+    }
+
+    /*!  desktop - grid-area: 2 | mobile - grid-order: 1  */
+
+    .social-media-faster {
         order: 1;
     }
 
-    .item3 {
+    /* increasing the heading font size when the vw is between 375px and 991px */
+    @media (min-width: 375px) {
+        .social-media-faster > h2 {
+            font-size: clamp(2.75rem, 1.297vw + 2.446rem, 3.25rem);
+        }
+    }
+
+    /*!  desktop - grid-area: 3 | mobile - grid-order: 4 */
+    .schedule-to-social-media {
         order: 4;
     }
 
-    .item4 {
+    .schedule-to-social-media > h2 {
+        font-size: clamp(1.625rem, 2.086vw + 1.208rem, 2.5rem);
+    }
+
+    .schedule-to-social-media > img {
+        width: min(100%, 600px);
+        translate: unset;
+        margin-top: var(--spacing-20);
+    }
+
+    .schedule-to-social-media > p {
+        font-size: clamp(1rem, 1.192vw + 0.762rem, 1.5rem);
+        padding-right: unset;
+        padding: 0 5%;
+        margin-top: var(--spacing-20);
+        translate: unset;
+    }
+
+    /*!  desktop - grid-area: 4 | mobile - grid-order: 2  */
+    .manage-multiple-accounts {
         order: 2;
     }
 
-    .item5 {
+    .manage-multiple-accounts > img {
+        object-position: top left;
+        scale: none;
+        height: unset; /*unset from 60px*/
+    }
+
+    .manage-multiple-accounts > h2 {
+        margin-top: var(--spacing-20);
+        font-size: var(--spacing-28);
+    }
+
+    /*!  desktop - grid-area: 5 | mobile - grid-order: 3  */
+
+    .maintain-consistent-schedule {
         order: 3;
+        height: 220px;
     }
 
-    .item6 {
+    .maintain-consistent-schedule > h2 {
+        /* <= 320px vw <= 991px */
+        font-size: var(--font-size-7);
+    }
+
+    .maintain-consistent-schedule > img {
+        width: min(100%, 195px);
+        max-height: 180px;
+        translate: 0 var(--spacing-24);
+    }
+
+    /*!  desktop - grid-area: 6 | mobile - grid-order: 8  */
+
+    .write-using-ai {
         order: 8;
+        padding: min(8%, 40px);
     }
 
-    .item7 {
+    .write-using-ai > h2 {
+        font-size: clamp(2rem, 1.299vw + 1.696rem, 2.5rem);
+    }
+
+    .write-using-ai > img {
+        width: min(70%, 300px);
+        margin-top: var(--spacing-24);
+    }
+
+    /*!  desktop - grid-area: 7 | mobile - grid-order: 6  */
+    .faster-audience-growth {
         order: 6;
     }
 
-    .item8 {
+    .faster-audience-growth > p {
+        font-size: clamp(3rem, 2.597vw + 2.391rem, 4rem);
+    }
+
+    .faster-audience-growth > h2 {
+        margin-top: var(--spacing-8);
+        font-size: var(--font-size-4);
+    }
+
+    .faster-audience-growth > img {
+        margin-top: var(--spacing-20);
+        width: min(100%, 160px);
+    }
+
+    .grow-followers {
+        flex-direction: column;
+        justify-content: center;
         order: 5;
+    }
+
+    /*!  desktop - grid-area: 8 | mobile - grid-order: 5  */
+
+    .grow-followers > img {
+        width: min(75%, 380px);
+    }
+
+    .grow-followers > h2 {
+        margin-left: 0;
+        margin-top: var(--spacing-20);
+        font-size: var(--spacing-36);
+        text-align: center;
+    }
+
+    #main-cont > .grow-followers > h2 {
+        letter-spacing: -1px;
+    }
+
+    /* reducing the heading font size when the vw is between 320px and 374px */
+    @media (max-width: 374px) {
+        .social-media-faster > h2 {
+            font-size: var(--font-size-8);
+        }
+
+        .grow-followers > h2 {
+            font-size: var(--font-size-8);
+        }
+    }
+
+    @media (min-width: 600px) {
+        .grid-item {
+            justify-items: center;
+            text-align: center;
+        }
+
+        .create-post > img {
+            width: 250px;
+            margin-top: var(--spacing-40);
+        }
+
+        /* order: 2 */
+        .social-media-faster > img,
+        .social-media-faster > p {
+            margin-top: var(--spacing-20);
+        }
+
+        /* order: 4 */
+
+        .schedule-to-social-media > img,
+        .schedule-to-social-media > p {
+            margin-top: var(--spacing-32);
+        }
+
+        .schedule-to-social-media > p {
+            padding: 0 13%;
+        }
+
+        .manage-multiple-accounts > img {
+            width: min(75%, 450px);
+        }
+
+        .manage-multiple-accounts > h2 {
+            margin-top: 32px;
+
+            /* <= 600px vw <= 991px */
+            font-size: clamp(1.75rem, 3.069vw + 0.599rem, 2.5rem);
+        }
+
+        .maintain-consistent-schedule > h2 {
+            font-size: clamp(1.75rem, 3.069vw + 0.599rem, 2.5rem);
+        }
+
+        .maintain-consistent-schedule > img {
+            width: 240px;
+            /* <= 600px vw <= 991px */
+        }
+
+        .write-using-ai > img {
+            margin-top: var(--spacing-36);
+        }
+
+        .faster-audience-growth > h2 {
+            margin-top: var(--spacing-32);
+            font-size: var(--font-size-6);
+        }
+
+        .faster-audience-growth > img {
+            margin-top: var(--spacing-40);
+            width: min(100%, 260px);
+        }
     }
 }
