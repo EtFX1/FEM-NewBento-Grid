@@ -19,12 +19,15 @@ Users should be able to:
 ### Screenshot
 
 Desktop
+
 ![](./screenshots/desktop-screenshot.png)
 
 Tablet
+
 ![](./screenshots/tablet-screenshot.png)
 
 Mobile
+
 ![](./screenshots/mobile-screenshot.png)
 
 ### Links
