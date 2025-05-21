@@ -16,7 +16,7 @@ Users should be able to:
 
 -   View the optimal layout for the interface depending on their device's screen size
 
-### Screenshot
+### Screenshots
 
 Desktop
 
@@ -32,8 +32,8 @@ Mobile
 
 ### Links
 
--   Solution URL: [Add solution URL here](https://your-solution-url.com)
--   Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+-   [Solution URL](https://www.frontendmentor.io/solutions/responsive-new-bento-grid-solution-pAyM488t3z)
+-   [Live Site URL](https://etfx1.github.io/FEM-NewBento-Grid/)
 
 ### Built with
 
